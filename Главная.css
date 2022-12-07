@@ -7,7 +7,7 @@
 }
 
 .u-section-1 .u-layout-wrap-1 {
-  margin-top: 60px;
+  margin-top: 70px;
   margin-bottom: 60px;
 }
 
@@ -34,13 +34,13 @@
 }
 
 .u-section-1 .u-container-layout-2 {
-  padding: 30px;
+  padding: 0 2px;
 }
 
 .u-section-1 .u-gallery-1 {
-  height: 471px;
-  width: 574px;
-  margin: 0 auto;
+  height: 558px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .u-section-1 .u-carousel-indicators-1 {
@@ -123,7 +123,6 @@
 
   .u-section-1 .u-gallery-1 {
     height: 435px;
-    width: 457px;
   }
 }
 
@@ -151,10 +150,6 @@
   .u-section-1 .u-layout-cell-2 {
     min-height: 495px;
   }
-
-  .u-section-1 .u-gallery-1 {
-    width: 592px;
-  }
 }
 
 @media (max-width: 767px) {
@@ -175,14 +170,8 @@
     min-height: 478px;
   }
 
-  .u-section-1 .u-container-layout-2 {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
   .u-section-1 .u-gallery-1 {
     height: 395px;
-    width: 475px;
   }
 }
 
@@ -201,9 +190,12 @@
 
   .u-section-1 .u-gallery-1 {
     height: 253px;
-    width: 299px;
   }
-}.u-section-2 .u-sheet-1 {
+} .u-section-2 {
+  background-image: none;
+}
+
+.u-section-2 .u-sheet-1 {
   min-height: 351px;
 }
 
@@ -568,7 +560,7 @@
     padding-right: 10px;
   }
 } .u-section-5 {
-  background-image: url("images/02671d4287de65382c677efc3af4c3a5e84443f637adb297ea6cd244239d54a81c023097176be75688aa428c1ed28c1e6698ce00bc4fc392510efd_1280.jpg");
+  background-image: url("https://pixabay.com/get/g7875984f4585aa3d3adbf694ddd59d5396e69848a1ec5d040b13f1dc7f05d78fc8b0f97da91d1a77664b689f8099bd991d0672c201862a24b45716e50cf7c5a8_1280.jpg");
   background-position: 50% 50%;
 }
 
@@ -577,12 +569,27 @@
 }
 
 .u-section-5 .u-text-1 {
-  margin: 89px 36px 60px auto;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  margin: 75px auto 0 -26px;
+}
+
+.u-section-5 .u-btn-1 {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  background-image: none;
+  margin: 21px auto 60px 0;
+  padding: 24px 54px 25px 53px;
 }
 
 @media (max-width: 1199px) {
   .u-section-5 .u-sheet-1 {
     min-height: 330px;
+  }
+
+  .u-section-5 .u-btn-1 {
+    border-style: solid;
   }
 }
 
@@ -603,6 +610,8 @@
     min-height: 120px;
   }
 }
+
+
 /* ------------------------------------------------------------------------------
 	Footer
 -------------------------------------------------------------------------------*/
@@ -628,7 +637,7 @@
 .footer .footer-share li {
 	background: #3d3d3d none repeat scroll 0 0;
 	border-radius: 50%;
-	color: #ffffff;
+	color: #020101;
 	width: 26px;
 	height: 26px;
 	border-radius: 50%;
@@ -638,7 +647,7 @@
 	float: none;
 }
 .footer .footer-share a {
-	color: #fff;
+	color: rgb(0, 0, 0);
 }
 .footer .fa-heart {
 	color: #e84545;
