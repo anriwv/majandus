@@ -1,138 +1,88 @@
 <!DOCTYPE html>
-<html style="font-size: 16px;" lang="ru"><head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <meta name="keywords" content="INTUITIVE">
-    <meta name="description" content="">
-    <title>Kuki kohvik</title>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Shader Example</title>
+</head>
+<body>
+	<div id="shader"></div>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Главная.css" media="screen">
-    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
-    <meta name="generator" content="Nicepage 5.0.7, nicepage.com">
-    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+	<script type="x-shader/x-vertex" id="vertex">
+		void main() {
+			gl_Position = vec4(position, 1.0);
+		}
+	</script>
 
-<!--
+	<script type="x-shader/x-fragment" id="fragment">
+		uniform float u_time;
+		uniform vec2 u_resolution;
 
+		void main() {
+			vec2 st = gl_FragCoord.xy / u_resolution.xy;
+			gl_FragColor = vec4(st.x, st.y, abs(sin(u_time)), 1.0);
+		}
+	</script>
 
+	<script>
+		let camera, scene, renderer, clock;
+		let uniforms;
 
+		function init() {
+			const container = document.getElementById("shader");
 
-    <script type="application/ld+json">{
-		"@context": "http://schema.org",
-		"@type": "Organization",
-		"name": ""
-}</script>
-    <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Главная">
-    <meta property="og:type" content="website">
-  </head>
-  <body data-home-page="Главная.html" data-home-page-title="Главная" class="u-body u-xl-mode" data-lang="ru">
-    <section class="u-clearfix u-grey-90 u-section-1" id="carousel_6740">
-      <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
-          <div class="u-layout">
-            <div class="u-layout-row">
-              <div class="u-align-left u-container-align-center-md u-container-align-center-sm u-container-align-center-xs u-container-style u-layout-cell u-left-cell u-shape-rectangle u-size-24-lg u-size-24-xl u-size-60-md u-size-60-sm u-size-60-xs u-layout-cell-1">
-                <div class="u-container-layout u-container-layout-1">
-                  <h1 class="u-align-center-md u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-xl u-text u-title u-text-1"> Kuki kohvik<br>
-                  </h1>
-                  <p class="u-align-center-md u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-xl u-text u-text-2"> Kohvik, kust inimesed saavad endale maiuse või lähedastele kingituse osta.</p>
-                </div>
-              </div>
-              <div class="u-container-align-center-sm u-container-align-center-xs u-container-style u-layout-cell u-right-cell u-shape-rectangle u-size-36-lg u-size-36-xl u-size-60-md u-size-60-sm u-size-60-xs u-layout-cell-2">
-                <div class="u-container-layout u-valign-middle u-container-layout-2">
-                  <div class="u-carousel u-expanded-width u-gallery u-gallery-slider u-layout-carousel u-lightbox u-no-transition u-show-text-on-hover u-gallery-1" id="carousel-f035" data-interval="5000" data-u-ride="carousel">
-                    <ol class="u-absolute-hcenter u-carousel-indicators u-carousel-indicators-1">
-                      <li data-u-target="#carousel-f035" data-u-slide-to="0" class="u-active u-grey-70 u-shape-rectangle" style="width: 30px; height: 3px;"></li>
-                      <li data-u-target="#carousel-f035" data-u-slide-to="1" class="u-grey-70 u-shape-rectangle" style="width: 30px; height: 3px;"></li>
-                    </ol>
-                    <div class="u-carousel-inner u-gallery-inner" role="listbox">
-                      <div class="u-active u-carousel-item u-effect-fade u-gallery-item u-carousel-item-1" data-image-width="700" data-image-height="700" data-href="https://forms.gle/wVzejkQaK99VkFhF9" data-target="_blank">
-                        <div class="u-back-slide" data-image-width="1280" data-image-height="720">
-                          <img class="u-back-image u-expanded" src="images/-5783145006066941676_121.jpg" alt="Kohvikus">
-                        </div>
-                        <div class="u-align-center u-over-slide u-shading u-valign-bottom u-over-slide-1">
-                          <h3 class="u-gallery-heading">Kohvikus</h3>
-                          <p class="u-gallery-text">Pakkume tarnevõimaluse</p>
-                        </div>
-                      </div>
-                      <div class="u-carousel-item u-effect-fade u-gallery-item u-carousel-item-2" data-image-width="1280" data-image-height="640" data-href="https://forms.gle/wVzejkQaK99VkFhF9" data-target="_blank">
-                        <div class="u-back-slide" data-image-width="1280" data-image-height="720">
-                          <img class="u-back-image u-expanded" src="images/-5783145006066941676_121.jpg" alt="Kohvikus">
-                        </div>
-                        <div class="u-align-center u-over-slide u-shading u-valign-bottom u-over-slide-2">
-                          <h3 class="u-gallery-heading">Kohvikus</h3>
-                          <p class="u-gallery-text">Teeme ise küpsiseid ja muffineid</p>
-                        </div>
-                      </div>
-                    </div>
-                    <a class="u-absolute-vcenter u-carousel-control u-carousel-control-prev u-icon-circle u-opacity u-opacity-70 u-palette-1-base u-spacing-10 u-carousel-control-1" href="#carousel-f035" role="button" data-u-slide="prev">
-                      <span aria-hidden="true">
-                        <svg viewBox="0 0 8 8"><path d="M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z"></path></svg>
-                      </span>
-                      <span class="sr-only">
-                        <svg viewBox="0 0 8 8"><path d="M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z"></path></svg>
-                      </span>
-                    </a>
-                    <a class="u-absolute-vcenter u-carousel-control u-carousel-control-next u-icon-circle u-opacity u-opacity-70 u-palette-1-base u-spacing-10 u-text-white u-carousel-control-2" href="#carousel-f035" role="button" data-u-slide="next">
-                      <span aria-hidden="true">
-                        <svg viewBox="0 0 8 8"><path d="M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z"></path></svg>
-                      </span>
-                      <span class="sr-only">
-                        <svg viewBox="0 0 8 8"><path d="M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z"></path></svg>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="u-align-center u-clearfix u-grey-90 u-section-2" id="sec-704f">
-      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <div class="u-expanded-width u-list u-list-1">
-          <div class="u-repeater u-repeater-1">
-            <div class="u-container-style u-list-item u-repeater-item">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1"><span class="u-file-icon u-icon u-icon-1"><img src="images/1365551.png" alt=""></span>
-                <h3 class="u-align-center u-text u-text-1">1</h3>
-                <p class="u-align-left u-text u-text-default u-text-2"> Teeme ise küpsiseid ja muffineid</p>
-              </div>
-            </div>
-            <div class="u-container-style u-list-item u-repeater-item">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2"><span class="u-file-icon u-icon u-icon-2"><img src="images/3796216.png" alt=""></span>
-                <h3 class="u-align-center u-text u-text-3">2</h3>
-                <p class="u-align-left u-text u-text-default u-text-4"> Pakkume tarnevõimaluse</p>
-              </div>
-            </div>
-            <div class="u-container-style u-list-item u-repeater-item">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3"><span class="u-file-icon u-icon u-icon-3"><img src="images/2057748.png" alt=""></span>
-                <h3 class="u-align-center u-text u-text-5">3</h3>
-                <p class="u-align-left u-text u-text-default u-text-6"> Pakkume klientidele sõbralikku teenindust.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="u-clearfix u-grey-90 u-section-3" id="sec-1075">
-      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <h1 class="u-align-center u-text u-text-default u-text-1">MEIE TOOTED</h1>
-      </div>
-    </section>
-    <section class="u-clearfix u-grey-90 u-section-4" id="sec-3410">
-      <div class="u-clearfix u-sheet u-sheet-1"><!--products--><!--products_options_json--><!--{"type":"Recent","source":"","tags":"","count":""}--><!--/products_options_json-->
-        
-	
-ul
-  -for(var i = 1; i < 36; i++)
-    li(class="sides-"+i)
-			 
+			clock = new THREE.Clock();
+			camera = new THREE.Camera();
+			camera.position.z = 1;
+
+			scene = new THREE.Scene();
+
+			const geometry = new THREE.PlaneBufferGeometry(2, 2);
+
+			uniforms = {
+				u_time: { type: "f", value: 1.0 },
+				u_resolution: { type: "v2", value: new THREE.Vector2() },
+			};
+
+			const material = new THREE.ShaderMaterial({
+				uniforms,
+				vertexShader: document.getElementById("vertex").textContent,
+				fragmentShader: document.getElementById("fragment").textContent
+			});
+
+			const mesh = new THREE.Mesh(geometry, material);
+			scene.add(mesh);
+
+			renderer = new THREE.WebGLRenderer();
+			renderer.setPixelRatio(window.devicePixelRatio);
+
+			container.appendChild(renderer.domElement);
+
+			onWindowResize();
+			window.addEventListener("resize", onWindowResize);
+		}
+
+		function onWindowResize() {
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			uniforms.u_resolution.value.x = renderer.domElement.width;
+			uniforms.u_resolution.value.y = renderer.domElement.height;
+		}
+
+		function render() {
+			uniforms.u_time.value = clock.getElapsedTime();
+			renderer.render(scene, camera);
+		}
+
+		function animate() {
+			render();
+			requestAnimationFrame(animate);
+		}
+
+		init();
+		animate();
+	</script>
 </body>
--->
-
 </html>
 
