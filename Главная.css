@@ -1,56 +1,4 @@
- $sides: 46;
-
-body {
-  background-color: black;
-  align-items: center;
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  perspective: 2000px;
-  width: 100%;
-}
-
-ul, li {
-  list-style: none;
-}
-
-@keyframes turn {
-  from {
-    transform: rotateX(0turn);
-  }
-  to {
-    transform: rotateX(1turn);
-  }
-}
-
-ul {
-  height: 12em;
-  width: 26em;
-  position: relative;
-}
-
-@for $i from 1 through $sides {
-  .sides-#{$i} {
-    animation: turn 3s calc(#{$i} * -100ms) linear infinite;
-    background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.ultim.clubgowi.net%2Fsites%2Fwww.clubgowi.com%2Ffiles%2Fstyles%2Flarge%2Fpublic%2Ffield%2Fimage%2Fsave-1-percent-more_large.png%3Fitok%3DzOW5SV7D&f=1&nofb=1&ipt=a514cba54e0992be3bd5c3acdde67370a6f349e7787f613b5a80825dfcb27d84&ipo=images') no-repeat;
-    background-size: cover;
-    content: '';
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    transform-origin: top center;
-    //
-  }
-}
-
-
-
-/*
-''
-
-.u-section-1 {
+ .u-section-1 {
   background-image: none;
 }
 
@@ -667,8 +615,6 @@ ul {
 /* ------------------------------------------------------------------------------
 	Footer
 -------------------------------------------------------------------------------*/
-
-/*
 .footer {
 	text-align: center;
 }
@@ -707,6 +653,3 @@ ul {
 	color: #e84545;
 	font-size: 11px;
 	margin: 0 2px;
-	
-
-*/
