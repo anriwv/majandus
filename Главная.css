@@ -653,3 +653,53 @@
 	color: #e84545;
 	font-size: 11px;
 	margin: 0 2px;
+}
+
+
+
+#sec-518c {
+  background-image: url('images/feature-car.webp');
+  background-size: 100%; /* This zooms into the image */
+  background-position: 80% 20%; /* Adjust this to focus on a specific part of the image */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+#sec-518c::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Optional overlay for text readability */
+  z-index: 1;
+}
+
+#sec-518c h1,
+#sec-518c a {
+  position: relative;
+  z-index: 2;
+}
+
+
+
+.u-btn-1 {
+  background-color: #f15b5b; /* Change this to the color you want */
+  color: #3d3d3d; /* Text color */
+  border: 2px solid #f15b5b; /* Optional: Border color */
+}
+
+.u-btn-1:hover {
+  background-color: #d94a4a; /* Hover background color */
+  color: #fff; /* Hover text color */
+  border-color: #d94a4a; /* Optional: Hover border color */
+}
